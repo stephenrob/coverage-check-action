@@ -4,9 +4,11 @@ WORKDIR /action
 
 RUN apk add --update nodejs
 
-COPY Gemfile* /action
+COPY Gemfile* ./
 
-RUN bundle install
+RUN bundle config --global frozen 1 \
+  && bundle config set without development test \
+  && bundle install --without development test
 
 COPY lib /action/lib
 COPY bin /action/bin
