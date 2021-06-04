@@ -18,6 +18,9 @@ inputs:
   result_path:
     description: "Json with coverage result"
     required: true
+  report_name:
+    description: "Name of the github action check"
+    default: "Coverage"
 runs:
   using: "docker"
   image: "Dockerfile"
