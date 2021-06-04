@@ -21,6 +21,9 @@ inputs:
   report_name:
     description: "Name of the github action check"
     default: "Coverage"
+  github_api:
+    description: "GitHub API Endpoint, Only change if using GitHub Enterprise"
+    default: "https://api.github.com"
 runs:
   using: "docker"
   image: "Dockerfile"

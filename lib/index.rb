@@ -5,7 +5,6 @@ require 'json'
 require 'time'
 require_relative './report_adapter'
 require_relative './github_check_run_service'
-require_relative './github_client'
 require_relative './coverage_report'
 
 def read_json(path)
@@ -17,7 +16,8 @@ end
   sha: ENV['GITHUB_SHA'],
   token: ENV['INPUT_TOKEN'],
   owner: ENV['GITHUB_REPOSITORY_OWNER'] || @event_json.dig('repository', 'owner', 'login'),
-  repo: ENV['GITHUB_REPOSITORY_NAME'] || @event_json.dig('repository', 'name')
+  repo: ENV['GITHUB_REPOSITORY_NAME'] || @event_json.dig('repository', 'name'),
+  api: ENV['INPUT_GITHUB_API']
 }
 
 @coverage_type = ENV['INPUT_TYPE']

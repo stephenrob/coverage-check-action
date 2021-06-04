@@ -14,9 +14,13 @@ class CoverageReport
 
     def simplecov(report_path, data)
       report = read_json(report_path)
-      minumum_percent = data[:min]
+      minimum_percent = data[:min]
       covered_percent = report.dig('result', 'line') || report.dig('result', 'covered_percent')
-      { 'lines' => { 'covered_percent' => covered_percent, 'minumum_percent' => minumum_percent } }
+      branches_covered_percent = report.dig('result', 'branch') || 'n/a'
+      { 
+        'lines' => { 'covered_percent' => covered_percent, 'minumum_percent' => minimum_percent },
+        'branches' => { 'covered_percent' => branches_covered_percent, 'minimum_percent' => minimum_percent }
+      }
     end
 
     def lcov(report_path, data)

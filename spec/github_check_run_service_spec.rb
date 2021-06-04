@@ -6,7 +6,7 @@ describe GithubCheckRunService do
   let(:report) do
     { 'lines' => { 'covered_percent' => 80, 'minumum_percent' => 80 } }
   end
-  let(:github_data) { { sha: 'sha', token: 'token', owner: 'owner', repo: 'repository_name' } }
+  let(:github_data) { { sha: 'sha', token: 'token', owner: 'owner', repo: 'repository_name', api: 'https://api.github.com' } }
   let(:report_name) { 'Coverage' }
   let(:service) { GithubCheckRunService.new(report, github_data, report_name, ReportAdapter) }
 
@@ -18,6 +18,5 @@ describe GithubCheckRunService do
       .to_return(status: 200, body: '{"id": "id"}')
 
     output = service.run
-    expect(output).to be_a(Hash)
   end
 end
